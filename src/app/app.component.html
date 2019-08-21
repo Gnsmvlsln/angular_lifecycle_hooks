@@ -1,21 +1,45 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="parent">
+        <h1 style="color:darkslategray">&nbsp;T A S K  &nbsp; M A N A G E R</h1>
+<mat-card class="example-card">
+
+
+<button (click)="addImp()" mat-raised-button color="primary" class="btnWidth" >{{head1}}</button>
+<h3 style="color:darkslategray">E V E N T S</h3>
+<div *ngIf="importantVisibility">
+        <!-- <h3>Events</h3> -->
+        
+        <mat-form-field  class="inputWidth">
+                <mat-label>Add Events</mat-label>
+        <input type="text" matInput  type="text"  #data>
+    </mat-form-field> &nbsp;
+    <button (click)="onAdd(data)" mat-raised-button color="warn" class="secondaryButton" style="padding-left:5px">Add event</button>
+
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<b *ngIf='cc > 0'>Total Events : {{cc}}</b>
+<div *ngFor='let event of event'>
+<app-regular-task [data]="event" (CountData)='totalEvents($event)' >
+    <p #eventsss>{{EventCount}}</p>
+</app-regular-task>
+</div>
+<br>
+<div *ngIf="!visiblemain">
+        <h3 style="color:darkslategray ;margin-top: 0px">T A S K S</h3>
+        
+    <!-- {{act.name}} -->
+    <div class="scroll-box">
+    <div *ngFor='let act of list'>
+        <b style="color:teal">* {{act}}
+        <button (click)='onDelete(act)' mat-button color="warn" ><mat-icon>delete</mat-icon></button>
+    </b>
+    </div>
+</div>
+<mat-form-field  class="inputWidth">
+    <mat-label>Add Tasks</mat-label>
+    <input type="text" matInput #action />
+    </mat-form-field> &nbsp;
+    <button (click)='onAddAction()' mat-raised-button color="warn">Add Task</button>
+    <button (click)='decision()' [disabled]='disabble' mat-raised-button color="warn" class="btnWidth">What I do first ?</button>
+</div>
+</mat-card>
 
 <router-outlet></router-outlet>
